@@ -114,12 +114,13 @@
       orderBy("createdAt", "desc"),
       limit(lim)
     );
-    const docS = await getDocs(q);
-    lastVisible = docS.docs[docS.docs.length - 1];
-    makeData(docS);
-    setTimeout(() => {
-      MathJax.typeset();
-    }, 500);
+    getDocs(q).then(docS => {
+      lastVisible = docS.docs[docS.docs.length - 1];
+      makeData(docS);
+      setTimeout(() => {
+        MathJax.typeset();
+      }, 500);
+    });
   }
 
   const readHandle = async (id, read) => {
