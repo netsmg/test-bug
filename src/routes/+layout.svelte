@@ -70,6 +70,20 @@
   }
 </script>
 
+<svelte:head>
+  
+  <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+/>
+<!-- <link rel="stylesheet"  href="https://raw.githubusercontent.com/dracula/highlightjs/master/dracula.css"> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script> -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+  <link rel="stylesheet" href="https://firebasestorage.googleapis.com/v0/b/blog-424dc.appspot.com/o/dracula.css?alt=media&token=7a146a01-151e-404a-87d4-b4fce940de8e"/>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</svelte:head>
 <Toaster />
 
 <div class="navbar bg-base-100">
@@ -91,9 +105,7 @@
     <a class="btn btn-ghost text-xl">TESThub</a>
   </div>
   <div class="flex-none gap-2">
-    <div class="form-control">
-      <input type="text" placeholder="Search" class="input input-bordered w-24 md:w-auto" />
-    </div>
+    
     <div class="dropdown dropdown-end">
       {#if userStore.loggedIn === true}
         <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
