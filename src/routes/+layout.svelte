@@ -5,6 +5,7 @@
   import { fauth } from "../firebase";
   import { userStore } from "../stores/userStore";
   import toast, { Toaster } from 'svelte-french-toast';
+  import "../app.css";
 
   let me;
   let currentTheme = '';
