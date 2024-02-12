@@ -119,6 +119,6 @@
       </div>
     </button>
   </div>
-</div>
+
 
 <slot />
