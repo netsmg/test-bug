@@ -118,6 +118,7 @@
   </div>
 </div>
 
+<slot />
 <div class="mx-auto w-full max-w-xl px-10">
   <select
     data-choose-theme
