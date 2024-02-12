@@ -80,7 +80,7 @@
       </ul>
     </div>
   </div>
-  <div class="navbar-center">
+  <div class="navbar-start">
     <a class="btn btn-ghost text-xl">TESThub</a>
   </div>
   <div class="dropdown dropdown-end">
@@ -100,6 +100,7 @@
       <li><a>Settings</a></li>
       <li on:click={logOut}>Logout</li>
     </ul>
+</div>
     {:else}
     <div><a href="/auth">Login</a></div>
   {/if}
