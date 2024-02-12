@@ -100,8 +100,8 @@
       <li><a>Settings</a></li>
       <li on:click={logOut}>Logout</li>
     </ul>
+{:else}
 </div>
-    {:else}
     <div><a href="/auth">Login</a></div>
   {/if}
   <div class="navbar-end">
