@@ -2,6 +2,7 @@
   import { onMount } from 'svelte';
   import { themes } from '$lib/themes';
   import { fauth } from "../firebase";
+  import "../app.css";
   import { onAuthStateChanged, signOut } from 'firebase/auth';
   import { userStore } from "../stores/userStore";
   import toast, { Toaster } from 'svelte-french-toast';
@@ -80,7 +81,7 @@
       </ul>
     </div>
   </div>
-  <div class="navbar-start">
+  <div class="navbar-center">
     <a class="btn btn-ghost text-xl">TESThub</a>
   </div>
   <div class="dropdown dropdown-end">
@@ -100,26 +101,24 @@
       <li><a>Settings</a></li>
       <li on:click={logOut}>Logout</li>
     </ul>
-{:else}
-</div>
-    <div><a href="/auth">Login</a></div>
-  {/if}
-  <div class="navbar-end">
-    <button class="btn btn-ghost btn-circle">
-      <div class="indicator">
-        <select
-          data-choose-theme
-          class="select select-bordered select-primary mx-auto my-5 w-full max-w-3xl text-xl capitalize"
-          on:change={setTheme}
-        >
-          <option disabled selected>Choose a theme</option>
-          {#each themes as theme}
-          <option value={theme} class="capitalize">{theme}</option>
-          {/each}
-        </select>
-      </div>
-    </button>
+    {/if}
+    <div class="navbar-end">
+      <button class="btn btn-ghost btn-circle">
+        <div class="indicator">
+          <select
+            data-choose-theme
+            class="select select-bordered select-primary mx-auto my-5 w-full max-w-3xl text-xl capitalize"
+            on:change={setTheme}
+          >
+            <option disabled selected>Choose a theme</option>
+            {#each themes as theme}
+            <option value={theme} class="capitalize">{theme}</option>
+            {/each}
+          </select>
+        </div>
+      </button>
+    </div>
   </div>
-
+</div>
 
 <slot />
