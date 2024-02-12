@@ -40,7 +40,7 @@
             {/if}
           {/each}
         </div>
-        <h3 class="post__title"><a href={postLink}>{title}</a></h3>
+        <h3 class="post__title"><a>{title}</a></h3>
         <div class="post__meta">
           <span class="post__date">
             <svg xmlns='http://www.w3.org/2000/svg' width='512' height='512' viewBox='0 0 512 512'>
