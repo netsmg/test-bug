@@ -49,7 +49,7 @@
     });
   });
 
-  function logOut() {
+  async function logOut() {
     try {
       await signOut(fauth);
     } catch (err) {
