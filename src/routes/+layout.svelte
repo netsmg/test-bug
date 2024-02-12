@@ -1,6 +1,7 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import { fauth } from "../firebase";
+  import "../app.css";
   import { onAuthStateChanged, signOut } from 'firebase/auth';
   import { userStore } from "../stores/userStore";
   import toast, { Toaster } from 'svelte-french-toast';
