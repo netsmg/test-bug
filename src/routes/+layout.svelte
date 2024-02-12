@@ -1,8 +1,6 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-  import { themes } from '$lib/themes';
   import { fauth } from "../firebase";
-  import "../app.css";
   import { onAuthStateChanged, signOut } from 'firebase/auth';
   import { userStore } from "../stores/userStore";
   import toast, { Toaster } from 'svelte-french-toast';
@@ -54,69 +52,34 @@
       console.log(err);
     }
   }
-
-  function setTheme(event: Event) {
-    const select = event.target as HTMLSelectElement;
-    const theme = select.value;
-    if (themes.includes(theme)) {
-      const one_year = 60 * 60 * 24 * 365;
-      window.localStorage.setItem('theme', theme);
-      document.cookie = `theme=${theme}; max-age=${one_year}; path=/; SameSite=Strict;`;
-      document.documentElement.setAttribute('data-theme', theme);
-    }
-  }
 </script>
 
 <Toaster />
+
 <div class="navbar bg-base-100">
-  <div class="navbar-start">
-    <div class="dropdown">
-      <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" /></svg>
-      </div>
-      <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-        <li><a href="/">Homepage</a></li>
-        <li><a href="/blog">Blog</a></li>
-        <li><a href="/about">About</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="navbar-center">
+  <div class="flex-1">
     <a class="btn btn-ghost text-xl">TESThub</a>
   </div>
-  <div class="dropdown dropdown-end">
-    {#if me}
-    <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
-      <div class="w-10 rounded-full">
-        <img src={me.photoURL} alt="Rounded avatar" />
-      </div>
+  <div class="flex-none gap-2">
+    <div class="form-control">
+      <input type="text" placeholder="Search" class="input input-bordered w-24 md:w-auto" />
     </div>
-    <ul tabindex="0" class="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
-      <li>
-        <a class="justify-between">
-          Profile
-          <span class="badge">New</span>
-        </a>
-      </li>
-      <li><a>Settings</a></li>
-      <li on:click={logOut}>Logout</li>
-    </ul>
-    {/if}
-    <div class="navbar-end">
-      <button class="btn btn-ghost btn-circle">
-        <div class="indicator">
-          <select
-            data-choose-theme
-            class="select select-bordered select-primary mx-auto my-5 w-full max-w-3xl text-xl capitalize"
-            on:change={setTheme}
-          >
-            <option disabled selected>Choose a theme</option>
-            {#each themes as theme}
-            <option value={theme} class="capitalize">{theme}</option>
-            {/each}
-          </select>
+    <div class="dropdown dropdown-end">
+      {#if me}
+        <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
+          <div class="w-10 rounded-full">
+            <img src={me.photoURL} alt="Rounded avatar" />
+          </div>
+          <button on:click={logOut}>Sign out</button>
         </div>
-      </button>
+      {:else}
+        <ul tabindex="0" class="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
+          <li><a href="/">Homepage</a></li>
+          <li><a href="/blog">Blog</a></li>
+          <li><a href="/about">About</a></li>
+          <li><a href="/login">Login</a></li>
+        </ul>
+      {/if}
     </div>
   </div>
 </div>
