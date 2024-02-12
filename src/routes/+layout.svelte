@@ -102,7 +102,7 @@
     </ul>
     {:else}
     <div><a href="/auth">Login</a></div>
-  </div>
+  
   <div class="navbar-end">
     <button class="btn btn-ghost btn-circle">
       <div class="indicator">
