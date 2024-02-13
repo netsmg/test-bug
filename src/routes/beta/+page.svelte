@@ -54,5 +54,5 @@
     <button class="bg-gray-900 text-gray-200 rounded-full py-5 px-10 mt-9 capitalize tracking-wider w-full font-semibold">get ticket</button>
   </div>
 </div>
-</div>
+
 
