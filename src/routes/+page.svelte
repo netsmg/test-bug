@@ -1,26 +1,9 @@
-<div class="grid grid-flow-col gap-5 text-center auto-cols-max">
-  <div class="flex flex-col">
-    <span class="countdown font-mono text-5xl">
-      <span style="--value:15;"></span>
-    </span>
-    days
-  </div> 
-  <div class="flex flex-col">
-    <span class="countdown font-mono text-5xl">
-      <span style="--value:10;"></span>
-    </span>
-    hours
-  </div> 
-  <div class="flex flex-col">
-    <span class="countdown font-mono text-5xl">
-      <span style="--value:24;"></span>
-    </span>
-    min
-  </div> 
-  <div class="flex flex-col">
-    <span class="countdown font-mono text-5xl">
-      <span style="--value:52;"></span>
-    </span>
-    sec
+<div class="hero min-h-82 max-w-screen-xl mx-auto py-3">
+    <div class="hero-content flex-col lg:flex-row-reverse">
+      
+      <div class="text-center md:text-left md:mr-80">
+        <h1 class="text-4xl font-bold">Hello 👋, I'm Al-amin</h1>
+        <p class="py-3 text-xl">I enjoy building ideas into reality.</p>
+      </div>
+    </div>
   </div>
-</div>
