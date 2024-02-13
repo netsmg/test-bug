@@ -89,8 +89,12 @@
     </div>
   </div>
 </div>
+<div class="hero min-h-82 max-w-screen-xl mx-auto py-3">
+    <div class="hero-content flex-col lg:flex-row-reverse">
+      <slot />
+    </div>
+  </div>
 
-<slot />
 
 <footer class="bg-base-200">
   <div class="footer text-base-content border-base-300 flex px-10 py-4 border-t max-w-screen-xl mx-auto">
