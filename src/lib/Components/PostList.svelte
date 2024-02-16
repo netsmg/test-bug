@@ -17,7 +17,7 @@
     <div class="card__body">
       {#each tags as tag, index}
         {#if index < 3}
-         <code> <span class="tag tag-blue">{tag}</span></code>
+         <code> <span class="tag tag-blue badge badge-primary badge-sm">{tag}</span></code>
         {/if}
       {/each}
       <h4>{title}</h4>
@@ -29,7 +29,7 @@
         <div class="user__info">
           <h5>{author}</h5>
           <small>{createdAt}</small>
-          <small>· {mins} min read ·</small>
+          <small>· {mins} min read</small>
           <small>. {read} reads</small>
 <small>. {commentCount} comments</small>
         </div>
