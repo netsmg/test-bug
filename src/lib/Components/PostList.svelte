@@ -17,7 +17,7 @@
     <div class="card__body">
       {#each tags as tag, index}
         {#if index < 3}
-          <span class="tag tag-blue">{tag}</span>
+         <code> <span class="tag tag-blue">{tag}</span></code>
         {/if}
       {/each}
       <h4>{title}</h4>
@@ -30,7 +30,8 @@
           <h5>{author}</h5>
           <small>{createdAt}</small>
           <small>· {mins} min read ·</small>
-          <small><Icon icon="ic:baseline-remove-red-eye" />{read} <Icon icon="bi:dot" /> <Icon icon="cil:comment-bubble" /> {commentCount}</small>
+          <small>. {read} reads</small>
+<small>. {commentCount} comments</small>
         </div>
       </div>
     </div>
