@@ -1,5 +1,6 @@
 <script>
   import Icon from '@iconify/svelte';
+
   export let avatar;
   export let author;
   export let title;
@@ -13,13 +14,12 @@
 
 <div class="container">
   <div class="card">
-    
     <div class="card__body">
-        {#each tags as tag, index}
-      {#if index<3}
-       <span class="tag tag-blue">{tag}</span>
-      {/if}
-    {/each}
+      {#each tags as tag, index}
+        {#if index < 3}
+          <span class="tag tag-blue">{tag}</span>
+        {/if}
+      {/each}
       <h4>{title}</h4>
       <p>{@html express}...</p>
     </div>
@@ -35,6 +35,4 @@
       </div>
     </div>
   </div>
-  
-
-
+</div>
