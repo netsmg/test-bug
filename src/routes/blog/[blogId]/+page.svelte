@@ -118,7 +118,6 @@ const deleteMyComment = async(id) => {
 
 </script>
 
-<Toast/>
 
 {#if post && post.problems}
 {#if post.problems.length > 0}
