@@ -1,13 +1,31 @@
 <script>
   import { onDestroy, onMount } from "svelte";
-  import { collection, query, orderBy, startAfter, endAt, limit, onSnapshot, updateDoc, doc, increment, getDocs } from "firebase/firestore";
-  import { fstore } from "../firebase";
-  import { common } from "../stores/postStore";
-
   import PostList from "../lib/Components/PostList.svelte";
+  import { common } from "../stores/postStore";
   import PostSkeleton from "../lib/Components/PostSkeleton.svelte";
   import Search from "../lib/Components/Search.svelte";
+  
   import SectionHead from "../lib/Components/SectionHead.svelte";
+  import {
+    collection,
+    query,
+    orderBy,
+    startAt,
+    endAt,
+    startAfter,
+    endBefore,
+    limit,
+    onSnapshot,
+    updateDoc,
+    doc,
+    increment,
+
+    getDocs
+
+  } from "firebase/firestore";
+  import { fstore } from "../firebase";
+
+
 
   let posts = [];
   let lastVisible;
@@ -15,76 +33,101 @@
   let postCount = 0;
 
   const makeData = (docS) => {
-    posts = [];
-    docS.forEach(doc => {
+    docS.forEach(doc=>{
       posts.push({
-        ...doc.data(),
-        mins: common.getReadTime(doc.data().content),
-        createdAt: common.getDate(doc.data().createdAt),
-        id: doc.id
-      });
-    });
-  };
+          ...doc.data(),
+          mins: $common.getReadTime(doc.data().content),
+          createdAt: $common.getDate(doc.data().createdAt),
+          id: doc.id
+        });
+    })
 
-  const fetchData = async (queryFn) => {
-    posts = [];
-    const q = queryFn();
+      posts = posts;
+}
+
+  const  nextData = async(lastVisible, lim) => {
+      posts = [];
+    const q = query(
+      collection(fstore, "posts"),
+      orderBy("createdAt", "desc"),
+      startAfter(lastVisible),
+      limit(lim)
+    );
+
+    postCount++;
+
     const docS = await getDocs(q);
-    lastVisible = docS.docs[docS.docs.length - 1];
+    lastVisible = docS.docs[docS.docs.length-1];
     makeData(docS);
-    setTimeout(() => {
-      MathJax.typeset();
-    }, 500);
-  };
 
-  const next = () => {
-    if (posts.length >= 10) {
-      fetchData(() => query(
-        collection(fstore, "posts"),
-        orderBy("createdAt", "desc"),
-        startAfter(lastVisible),
-        limit(lim)
-      ));
-      postCount++;
-    }
-  };
+      setTimeout(()=>{
+        MathJax.typeset();
+      }, 500);
+  }
 
-  const prev = () => {
-    if (postCount > 0) {
-      fetchData(() => query(
-        collection(fstore, "posts"),
-        orderBy("createdAt", "desc"),
-        endAt(lastVisible),
-        limit(lim)
-      ));
-      postCount--;
-    }
-  };
+  const  prevData = async(lastVisible, lim) => {
+      posts = [];
+    const q = query(
+      collection(fstore, "posts"),
+      orderBy("createdAt", "desc"),
+      endAt(lastVisible),
+      limit(lim)
+    );
 
-  const readHandle = async (id, read) => {
-    const postRef = doc(fstore, "posts", id);
-    try {
-      await updateDoc(postRef, {
-        read: increment(1)
-      });
-    } catch (err) {
-      console.log(err);
-    }
-  };
+    postCount--;
 
-  onMount(async () => {
-    document.title = "TESThub | Home";
+    const docS = await getDocs(q);
+    lastVisible = docS.docs[docS.docs.length-1];
+    makeData(docS);
+
+      setTimeout(()=>{
+        MathJax.typeset();
+      }, 500);
+  }
+
+
+
+  onMount(async ()=>{
+    document.title = "TESThubs | Home";
     document.description = "An authentic blog to share your code";
-    fetchData(() => query(
+    posts = [];
+    const q = query(
       collection(fstore, "posts"),
       orderBy("createdAt", "desc"),
       limit(lim)
-    ));
+    );
+
+    const docS = await getDocs(q);
+    lastVisible = docS.docs[docS.docs.length-1];
+    makeData(docS);
+
+      setTimeout(()=>{
+        MathJax.typeset();
+      }, 500);
   });
 
-  onDestroy(() => {
-    // Cleanup code here if needed
-  });
+  const readHandle = async(id, read) => {
+    const postRef = doc(fstore, "posts", id);
+    try{
+      const res = await updateDoc(postRef, {
+        read: increment(1)
+      })
+      // console.log(res);
+    } catch(err){
+      console.log(err);
+    }
+  }
+
+  const next = () => {
+      if(posts.length>=10){
+        nextData(lastVisible, lim);
+      }
+  }
+
+  const prev = () => {
+      prevData(lastVisible, lim);
+  }
+ 
 </script>
 
 <Search/>
@@ -129,3 +172,7 @@
     {/if}
   </div>
 </div>
+
+
+
+
