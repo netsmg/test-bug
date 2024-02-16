@@ -25,7 +25,7 @@
     </div>
     <div class="card__footer">
       <div class="user">
-        <img src={avatar} alt="user__image" class="user__image">
+        <img src={avatar} alt="user__image" class="w-5 h-5 max-sm:w-3 max-sm:h-3 rounded-full user__image">
         <div class="user__info">
           <h5>{author}</h5>
           <small>{createdAt}</small>
