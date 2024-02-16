@@ -117,7 +117,8 @@ const deleteMyComment = async(id) => {
 
 
 </script>
-
+<div class="hero min-h-82 max-w-screen-xl mx-auto py-3">
+  <div class="hero-content flex-col lg:flex-row-reverse">
 
 {#if post && post.problems}
 {#if post.problems.length > 0}
@@ -234,7 +235,8 @@ const deleteMyComment = async(id) => {
 {/if}
 
 
-
+</div>
+</div>
 
 
 <style>
