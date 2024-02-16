@@ -4,6 +4,7 @@
   import { common } from "../stores/postStore";
   import PostSkeleton from "../lib/Components/PostSkeleton.svelte";
   import Search from "../lib/Components/Search.svelte";
+  import "./page.css";
   
   import SectionHead from "../lib/Components/SectionHead.svelte";
   import {
