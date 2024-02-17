@@ -63,7 +63,9 @@ Introduction In the ever-evolving landscape of web development, creating visuall
 </div>
 </article>
 
-</br><article class='itm'>
+<br>
+
+<article class='itm'>
 <div class='iThmb pThmb'>
 <a class='thmb' href='/'>
 
