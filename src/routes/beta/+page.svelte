@@ -1,5 +1,6 @@
+<script>
 import "./page.css";
-
+</script>
 <div class='blogM'>
 <!--[ Main content ]-->
 <main class='blogItm mainbar'>
